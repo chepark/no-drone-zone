@@ -2,9 +2,13 @@ import express from "express";
 const router = express.Router();
 
 // sent data to init the app
-router.get("/");
+router.get("/init", () => {
+  console.log("INIT");
+});
 
 // server side event
-router.get("realtime-violators");
+router.get("/realtime", () => {
+  console.log("REALTIME");
+});
 
 export default router;

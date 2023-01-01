@@ -1,16 +1,11 @@
 import express from "express";
+import router from "./routes/violators.js";
 
 const port = 8000;
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("helloddddd express");
-});
-
-app.get("/hi", (req, res) => {
-  res.send("hiiii");
-});
+app.use("/api/violator", router);
 
 app.listen(port, () => {
   console.log("listening on the port ", port);
