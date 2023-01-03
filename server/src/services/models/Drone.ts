@@ -1,7 +1,6 @@
 import {
   NEST_COORDINATES,
   NO_DRONE_ZONE_MIN_RADIUS,
-  REAKTOR_DRONE_API,
 } from "../../lib/constants.js";
 
 class Drone {
@@ -10,20 +9,34 @@ class Drone {
   positionY: number;
   distance: number;
   violatedNDZ: Boolean; // check if drone in No-Drone-Zone(NDZ)
+  // timeStamp: string; // change data type?
 
-  constructor(serialNumber: string, xCoordinate: number, yCoordinate: number) {
+  constructor(
+    serialNumber: string,
+    xCoordinate: number,
+    yCoordinate: number
+    // time: string
+  ) {
     this.serialNumber = serialNumber;
     this.positionX = xCoordinate;
     this.positionY = yCoordinate;
     this.distance = this.#calculateDistance(this.positionX, this.positionY);
     this.violatedNDZ = this.#checkViolation(this.distance);
+    // this.timeStamp = time;
   }
 
   #calculateDistance(xPosition: number, yPosition: number): number {
     // 2D Distance Formula: Distance = sqrt((x2 – x1)^2 + (y2 – y1)^2)
 
-    const xDistancePower = Math.pow(xPosition - NEST_COORDINATES.X, 2);
-    const yDistancePower = Math.pow(yPosition - NEST_COORDINATES.Y, 2);
+    // Divided by 1000 to turn coordinate unit into meters
+    const xDistancePower = Math.pow(
+      xPosition / 1000 - NEST_COORDINATES.X / 1000,
+      2
+    );
+    const yDistancePower = Math.pow(
+      yPosition / 1000 - NEST_COORDINATES.Y / 1000,
+      2
+    );
     const distance = Math.sqrt(xDistancePower + yDistancePower);
 
     return distance;
@@ -33,8 +46,6 @@ class Drone {
     if (distance < NO_DRONE_ZONE_MIN_RADIUS) return true;
     return false;
   }
-
-  static fetchDataFromReaktor() {}
 }
 
 export default Drone;
