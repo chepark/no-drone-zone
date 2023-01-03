@@ -61,4 +61,9 @@ export class PilotStorage {
       )
       .execute();
   }
+
+  static async getAllPilots() {
+    const violators = await pilotRepository.find();
+    return violators;
+  }
 }
