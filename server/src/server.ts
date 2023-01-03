@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
 import violatorsRouter from "./routes/violators.route.js";
 import { realtimeDroneTracker } from "./services/drone.services.js";
 import { PilotStorage } from "./services/PilotStorage.services.js";
@@ -7,6 +9,10 @@ import { AppDataSource } from "./typeorm/data-source.js";
 const port = 8000;
 
 const app = express();
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api/violators", violatorsRouter);
 
