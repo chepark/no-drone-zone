@@ -7,7 +7,7 @@
   "scripts": {
     "build": "rimraf dist && npx tsc",
     "prestart": "npm run build",
-    "start": "ts-node src/server.ts",
+    "start": "ts-node server.ts",
     "preserve": "npm run build",
     "serve": "concurrently \"tsc -w\" \"nodemon build/server.js\""
   },
