@@ -9,20 +9,13 @@ class Drone {
   positionY: number;
   distance: number;
   violatedNDZ: Boolean; // check if drone in No-Drone-Zone(NDZ)
-  // timeStamp: string; // change data type?
 
-  constructor(
-    serialNumber: string,
-    xCoordinate: number,
-    yCoordinate: number
-    // time: string
-  ) {
+  constructor(serialNumber: string, xCoordinate: number, yCoordinate: number) {
     this.serialNumber = serialNumber;
     this.positionX = xCoordinate;
     this.positionY = yCoordinate;
     this.distance = this.#calculateDistance(this.positionX, this.positionY);
     this.violatedNDZ = this.#checkViolation(this.distance);
-    // this.timeStamp = time;
   }
 
   #calculateDistance(xPosition: number, yPosition: number): number {

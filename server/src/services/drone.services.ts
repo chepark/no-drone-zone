@@ -3,8 +3,7 @@ import { XMLParser } from "fast-xml-parser";
 import { REAKTOR_DRONE_API } from "../lib/constants.js";
 import { DroneReport } from "../lib/types.js";
 import Drone from "./models/Drone.js";
-import { fetchPilotFromReaktor, handlePilot } from "./pilot.services.js";
-import { PilotStorage } from "./PilotStorage.services.js";
+import { handlePilot } from "./pilot.services.js";
 
 const parser = new XMLParser({
   ignoreAttributes: false,
@@ -52,14 +51,10 @@ export const realtimeDroneTracker = async () => {
     const drone = new Drone(serialNumber, positionX, positionY);
 
     if (drone.violatedNDZ) {
-      // fetch pilot
-      // handledata
-      // update db ->
-      console.log("VIOLator!!", serialNumber, drone.distance);
+      console.log("VIOLATOR!", serialNumber, drone.distance);
       handlePilot(serialNumber, drone.distance, timeStamp);
     } else {
-      // return
-      console.log("GOOODdd", serialNumber, drone.distance);
+      console.log("GOOD!", serialNumber, drone.distance);
     }
   });
 };
