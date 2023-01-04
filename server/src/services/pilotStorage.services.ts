@@ -1,6 +1,6 @@
 import { PilotData } from "../lib/types.js";
-import { AppDataSource } from "../typeorm/data-source.js";
-import { Pilot } from "../typeorm/entity/Pilot.js";
+import { AppDataSource } from "../config/data-source.js";
+import { Pilot } from "../db/entity/Pilot.js";
 import { dateIsoStringToMySqlDateTime } from "../lib/dateFormatter.js";
 import { OLD_DATA_TIME_GAP } from "../lib/constants.js";
 
