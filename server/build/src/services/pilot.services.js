@@ -20,18 +20,18 @@ export const fetchPilotFromReaktor = (serialNumber) => __awaiter(void 0, void 0,
         console.log("Error in Pilot Reaktor API: ", error);
     }
 });
-export const handlePilot = (serialNumber, distance, time) => __awaiter(void 0, void 0, void 0, function* () {
+export const handlePilot = (serialNumber, distance, coordinates, time) => __awaiter(void 0, void 0, void 0, function* () {
     const { data } = yield fetchPilotFromReaktor(serialNumber);
     const { pilotId } = data;
     // check the pilot information in DB.
     const record = yield PilotStorage.findPilotById(pilotId);
     if (!record) {
-        yield PilotStorage.createPilot(data, distance, time);
+        yield PilotStorage.createPilot(data, distance, coordinates, time);
     }
     if (record) {
         const pilotRecordHandler = new PilotRecordHandler(data, distance, time, record.distance);
         if (pilotRecordHandler.updateRecord) {
-            PilotStorage.updateDistanceLastSeenTime(pilotId, pilotRecordHandler.closestDistance, time);
+            PilotStorage.updateDistanceLastSeenTime(pilotId, pilotRecordHandler.closestDistance, coordinates, time);
         }
         else {
             PilotStorage.updateLastSeenTime(pilotId, time);

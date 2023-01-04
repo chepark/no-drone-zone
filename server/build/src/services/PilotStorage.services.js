@@ -19,7 +19,7 @@ export class PilotStorage {
             return pilot;
         });
     }
-    static createPilot(data, distance, timeStamp) {
+    static createPilot(data, distance, coordinates, timeStamp) {
         return __awaiter(this, void 0, void 0, function* () {
             const { pilotId, firstName, lastName, phoneNumber, email } = data;
             const pilot = new Pilot();
@@ -28,14 +28,18 @@ export class PilotStorage {
             pilot.phoneNumber = phoneNumber;
             pilot.email = email;
             pilot.distance = distance;
+            pilot.positionX = coordinates.positionX;
+            pilot.positionY = coordinates.positionY;
             pilot.lastSeenAt = dateIsoStringToMySqlDateTime(timeStamp);
             yield pilotRepository.save(pilot);
         });
     }
-    static updateDistanceLastSeenTime(pilotId, distance, time) {
+    static updateDistanceLastSeenTime(pilotId, distance, coordinate, time) {
         return __awaiter(this, void 0, void 0, function* () {
             const pilotToUpdate = yield PilotStorage.findPilotById(pilotId);
             pilotToUpdate.distance = distance;
+            pilotToUpdate.positionX = coordinate.positionX;
+            pilotToUpdate.positionY = coordinate.positionY;
             pilotToUpdate.lastSeenAt = dateIsoStringToMySqlDateTime(time);
             yield pilotRepository.save(pilotToUpdate);
         });
