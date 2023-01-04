@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import { DataSource } from "typeorm";
-import { Pilot } from "./entity/Pilot.js";
+import { Pilot } from "../db/entity/Pilot.js";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
