@@ -32,7 +32,6 @@ export const handlePilot = async (
   }
 
   if (record) {
-    console.log("EXISTING PILOT");
     const pilotRecordHandler = new PilotRecordHandler(
       data,
       distance,
