@@ -5,8 +5,8 @@ import colorData from "../data/colors.json";
 
 const ViolatorList = ({ violators }: { violators: ViolatorData[] }) => {
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="mb-5 text-xl">Pilot Information</h2>
+    <div className="flex flex-col w-auto">
+      {/* <h2 className="mb-5 text-xl">Pilot Information</h2> */}
       <ul className="flex flex-col gap-y-4 min-w-fit overflow-y-scroll h-screen">
         {violators.map((violator: ViolatorData, index: number) => {
           const colorCode = colorData[index].hex;

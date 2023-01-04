@@ -18,16 +18,22 @@ function App() {
     };
   }, []);
 
+  console.log(violators.length);
   return (
-    <div className="App border-solid border-2 border-indigo-800 container">
-      <h1 className="text-left text-2xl font-bold">BirdNest</h1>
-      <h2 className="text-left">
-        Pilot and Drone Tracking System to Protect Endangered Birds, Great
-        Crested Grebe
-      </h2>
-      <main className="grid grid-cols-2">
-        <CoordinatePlane violators={violators} />
-        <ViolatorList violators={violators} />
+    <div className="App">
+      <div className="flex flex-col justify-between items-bottom">
+        <h1 className="text-left text-2xl font-bold">BirdNest</h1>
+        <h2 className="text-left">
+          Pilot and Drone Tracking System to Protect Endangered Birds, Great
+          Crested Grebe
+        </h2>
+      </div>
+
+      <main className="mt-8 container mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 grid-cols-1">
+          <CoordinatePlane violators={violators} />
+          <ViolatorList violators={violators} />
+        </div>
       </main>
     </div>
   );
