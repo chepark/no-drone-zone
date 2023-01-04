@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { AppDataSource } from "../typeorm/data-source.js";
-import { Pilot } from "../typeorm/entity/Pilot.js";
+import { AppDataSource } from "../config/data-source.js";
+import { Pilot } from "../db/entity/Pilot.js";
 import { dateIsoStringToMySqlDateTime } from "../lib/dateFormatter.js";
 import { OLD_DATA_TIME_GAP } from "../lib/constants.js";
 const pilotRepository = AppDataSource.getRepository(Pilot);
