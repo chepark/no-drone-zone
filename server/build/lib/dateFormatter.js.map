@@ -1,0 +1,1 @@
+{"version":3,"file":"dateFormatter.js","sourceRoot":"","sources":["../../src/lib/dateFormatter.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,MAAM,4BAA4B,GAAG,CAAC,UAAU,EAAE,EAAE;IACzD,MAAM,aAAa,GAAG,UAAU,CAAC,KAAK,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,OAAO,CAAC,GAAG,EAAE,GAAG,CAAC,CAAC;IAChE,OAAO,aAAa,CAAC;AACvB,CAAC,CAAC"}
