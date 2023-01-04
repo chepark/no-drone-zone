@@ -11,10 +11,8 @@ const parser = new XMLParser({
 });
 
 export const fetchDrones = async () => {
-  //! handle undefined data from api
   try {
     const response = await axios.get(REAKTOR_DRONE_API);
-    //! remove if undefined data issue is solved
     if (!response.data) {
       console.log("response data", response);
     }
@@ -47,12 +45,17 @@ export const realtimeDroneTracker = async () => {
   const { timeStamp, drones } = await handleDroneData();
 
   drones.map((d) => {
-    const { serialNumber, positionX, positionY } = d;
+    let { serialNumber, positionX, positionY } = d;
+
+    positionX = positionX / 1000;
+    positionY = positionY / 1000;
+
     const drone = new Drone(serialNumber, positionX, positionY);
+    const coordinates = { positionX, positionY };
 
     if (drone.violatedNDZ) {
       console.log("VIOLATOR!", serialNumber, drone.distance);
-      handlePilot(serialNumber, drone.distance, timeStamp);
+      handlePilot(serialNumber, drone.distance, coordinates, timeStamp);
     } else {
       console.log("GOOD!", serialNumber, drone.distance);
     }

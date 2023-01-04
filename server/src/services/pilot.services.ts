@@ -16,6 +16,7 @@ export const fetchPilotFromReaktor = async (serialNumber: string) => {
 export const handlePilot = async (
   serialNumber: string,
   distance: number,
+  coordinates: { positionX: number; positionY: number },
   time: string
 ) => {
   const { data }: { data: PilotData } = await fetchPilotFromReaktor(
@@ -28,7 +29,7 @@ export const handlePilot = async (
   const record = await PilotStorage.findPilotById(pilotId);
 
   if (!record) {
-    await PilotStorage.createPilot(data, distance, time);
+    await PilotStorage.createPilot(data, distance, coordinates, time);
   }
 
   if (record) {
@@ -43,6 +44,7 @@ export const handlePilot = async (
       PilotStorage.updateDistanceLastSeenTime(
         pilotId,
         pilotRecordHandler.closestDistance,
+        coordinates,
         time
       );
     } else {
