@@ -29,7 +29,6 @@ export const handlePilot = (serialNumber, distance, time) => __awaiter(void 0, v
         yield PilotStorage.createPilot(data, distance, time);
     }
     if (record) {
-        console.log("EXISTING PILOT");
         const pilotRecordHandler = new PilotRecordHandler(data, distance, time, record.distance);
         if (pilotRecordHandler.updateRecord) {
             PilotStorage.updateDistanceLastSeenTime(pilotId, pilotRecordHandler.closestDistance, time);
