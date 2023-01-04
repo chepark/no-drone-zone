@@ -1,7 +1,7 @@
 import React from "react";
 import ViolatorRow from "./ViolatorRow";
 
-const ViolatorTable = () => {
+const ViolatorTable = ({ violators }) => {
   return (
     <div className="border-solid border-2 border-black">
       <table>
