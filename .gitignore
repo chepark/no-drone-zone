@@ -23,6 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
+<<<<<<< HEAD
 
 #dotenv environment variables
 .env
+=======
+build
+.env
+>>>>>>> ws-04-backend-services

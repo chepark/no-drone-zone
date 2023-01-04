@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import violatorsRouter from "./routes/violators.route.js";
-import { realtimeDroneTracker } from "./services/drone.services.js";
-import { PilotStorage } from "./services/PilotStorage.services.js";
-import { AppDataSource } from "./typeorm/data-source.js";
+import violatorsRouter from "./src/routes/violators.route.js";
+import { realtimeDroneTracker } from "./src/services/drone.services.js";
+import { PilotStorage } from "./src/services/PilotStorage.services.js";
+import { AppDataSource } from "./src/typeorm/data-source.js";
 
 const port = 8000;
 

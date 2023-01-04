@@ -7,26 +7,31 @@
   "scripts": {
     "build": "rimraf dist && npx tsc",
     "prestart": "npm run build",
-    "start": "node dist/index.js",
+    "start": "ts-node server.ts",
     "preserve": "npm run build",
-    "serve": "concurrently \"tsc -w\" \"nodemon dist/index.js\""
+    "serve": "concurrently \"tsc -w\" \"nodemon build/server.js\""
   },
   "keywords": [],
   "author": "Chaeah Park",
   "license": "MIT license",
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/express": "^4.17.15",
-    "@types/node": "^18.11.18",
+    "@types/node": "^16.11.10",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.4"
+    "ts-node": "10.7.0",
+    "typescript": "4.5.2"
   },
   "dependencies": {
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
+    "axios": "^1.2.2",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mysql": "^2.18.1"
+    "fast-xml-parser": "^4.0.12",
+    "mysql": "^2.14.1",
+    "typeorm": "^0.3.11"
   }
 }
