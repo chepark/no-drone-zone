@@ -15,6 +15,7 @@ export class PilotStorage {
   static async createPilot(
     data: PilotData,
     distance: number,
+    coordinates: { positionX: number; positionY: number },
     timeStamp: string
   ) {
     const { pilotId, firstName, lastName, phoneNumber, email } = data;
@@ -25,6 +26,8 @@ export class PilotStorage {
     pilot.phoneNumber = phoneNumber;
     pilot.email = email;
     pilot.distance = distance;
+    pilot.positionX = coordinates.positionX;
+    pilot.positionY = coordinates.positionY;
     pilot.lastSeenAt = dateIsoStringToMySqlDateTime(timeStamp);
 
     await pilotRepository.save(pilot);
@@ -33,10 +36,13 @@ export class PilotStorage {
   static async updateDistanceLastSeenTime(
     pilotId: string,
     distance: number,
+    coordinate: { positionX: number; positionY: number },
     time: string
   ) {
     const pilotToUpdate = await PilotStorage.findPilotById(pilotId);
     pilotToUpdate.distance = distance;
+    pilotToUpdate.positionX = coordinate.positionX;
+    pilotToUpdate.positionY = coordinate.positionY;
     pilotToUpdate.lastSeenAt = dateIsoStringToMySqlDateTime(time);
 
     await pilotRepository.save(pilotToUpdate);

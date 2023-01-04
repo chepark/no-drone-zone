@@ -15,6 +15,12 @@ export class Pilot extends BaseEntity {
   email: string;
 
   @Column({ type: "decimal", precision: 16, scale: 12 })
+  positionX: number;
+
+  @Column({ type: "decimal", precision: 16, scale: 12 })
+  positionY: number;
+
+  @Column({ type: "decimal", precision: 16, scale: 12 })
   distance: number;
 
   @Column({ type: "datetime" })
