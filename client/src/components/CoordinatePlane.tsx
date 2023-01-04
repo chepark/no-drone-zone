@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Nest } from "../assets/Nest";
 
-const CoordinatePlane = () => {
+const CoordinatePlane = ({ violators }) => {
   // generate a linearly spaced vector in the interval of 50
   const ticks = Array.from(Array(11), (_, i) => 50 * (i - 5));
 

@@ -6,8 +6,9 @@ export interface ViolatorData {
   name: string;
   phoneNumber: string;
   email: string;
-  closestDistance: number;
+  distance: number;
   positionX: Decimal;
   positionY: Decimal;
   lastSeenAt: IsoDateString;
+  colorCode?: string;
 }
