@@ -1,27 +1,21 @@
-import React, { MutableRefObject, useRef, useState } from "react";
+import React, { useState } from "react";
+import { distanceFormatter } from "../lib/distanceFormatter";
+import { ViolatorData } from "../lib/types";
 
 const DroneMarker = ({
-  name,
-  positionX,
-  positionY,
+  violator,
   colorCode,
 }: {
-  name: string;
-  positionX: string;
-  positionY: string;
+  violator: ViolatorData;
   colorCode: string;
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
-  const [markerPosition, setMarkerPosition] = useState<{
-    x: number;
-    y: number;
-  }>();
-  const markerRef = useRef() as MutableRefObject<SVGCircleElement>;
 
-  const onMarkerHover = () => {
-    const rect = markerRef.current.getBoundingClientRect();
-    setMarkerPosition({ x: rect.x, y: rect.y });
-    setShowTooltip(true);
+  const { positionX, positionY, name, distance } = violator;
+  const closestDistance = distanceFormatter(distance);
+
+  const markerHandler = () => {
+    setShowTooltip((prev) => !prev);
   };
 
   return (
@@ -29,26 +23,38 @@ const DroneMarker = ({
       <svg>
         <circle
           className="cursor-pointer"
-          onMouseOver={onMarkerHover}
-          onMouseOut={() => setShowTooltip(false)}
+          onMouseOver={markerHandler}
+          onMouseOut={markerHandler}
           cx={positionX}
           cy={positionY}
           r="5"
           fill={colorCode}
-          ref={markerRef}
         />
       </svg>
+
       {showTooltip && (
-        <text
-          x={`250`}
-          y={`300`}
-          fill="#000"
-          fontSize="14"
-          textAnchor="middle"
-          dominantBaseline="central"
-        >
-          {name}
-        </text>
+        <>
+          <text
+            x={`450`}
+            y={`450`}
+            fill="#000"
+            fontSize="14"
+            textAnchor="end"
+            dominantBaseline="auto"
+          >
+            {name}
+          </text>
+          <text
+            x={`450`}
+            y={`470`}
+            fill="#000"
+            fontSize="14"
+            textAnchor="end"
+            dominantBaseline="auto"
+          >
+            {closestDistance} m
+          </text>
+        </>
       )}
     </>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { formatDate } from "../lib/dateFormatter";
+import { distanceFormatter } from "../lib/distanceFormatter";
 import { ViolatorData } from "../lib/types";
 
 const ViolatorItem = ({
@@ -10,11 +11,11 @@ const ViolatorItem = ({
   colorCode: string;
 }) => {
   const { name, pilotId, phoneNumber, email, distance, lastSeenAt } = violator;
-  const fixedPointDistance = Number(distance).toFixed(2);
+  const closestDistance = distanceFormatter(distance);
   const formatedDate = formatDate(lastSeenAt);
 
   return (
-    <li className="border border-1 border-gray-400 rounded text-left p-4 pl-10 pr-10 max-w-md mr-5 relative">
+    <li className="border border-1 border-gray-300 rounded text-center p-4 pl-10 pr-10  relative">
       <div
         className="rounded-full w-4 h-4 mb-2 absolute top-5 right-5"
         style={{ backgroundColor: `${colorCode}` }}
@@ -23,7 +24,7 @@ const ViolatorItem = ({
       <div>▪️ Pilot ID: {pilotId}</div>
       <div>▪️ Phone: {phoneNumber}</div>
       <div>▪️ Email: {email}</div>
-      <div>▪️ Closest Distance: {fixedPointDistance} m</div>
+      <div>▪️ Closest Distance: {closestDistance} m</div>
       <div>▪️ Last Seen: {formatedDate}</div>
     </li>
   );

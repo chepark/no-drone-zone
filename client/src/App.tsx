@@ -8,30 +8,33 @@ import { ViolatorData } from "./lib/types";
 
 function App() {
   const [violators, setViolators] = useState<[] | ViolatorData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const events = new EventSource(SERVER_SENT_EVENT_URL);
+    events.onopen = () => {
+      setLoading(false);
+    };
     events.onmessage = (e) => {
       const parsedData: ViolatorData[] = JSON.parse(e.data);
-
       setViolators(parsedData);
     };
   }, []);
 
-  console.log(violators.length);
   return (
-    <div className="App border-2 border-indigo-500">
-      <div className="flex flex-col justify-between items-bottom">
-        <h1 className="text-left text-2xl font-bold">BirdNest</h1>
-        <h2 className="text-left">
+    <div className="App">
+      <div className="flex flex-col justify-between items-bottom bg-indigo-700 pt-4 pl-4">
+        <h1 className="text-left text-2xl font-bold text-white">BirdNest:</h1>
+        <div className="text-left text-lg mt-2 mb-5 text-white">
           Pilot and Drone Tracking System to Protect Endangered Birds, Great
           Crested Grebe
-        </h2>
+        </div>
       </div>
 
       <main className="mt-8 container mx-auto">
         <div className="grid md:grid-cols-2 gap-6 grid-cols-1">
           <CoordinatePlane violators={violators} />
+          {loading ? <div>...loading</div> : null}
           <ViolatorList violators={violators} />
         </div>
       </main>

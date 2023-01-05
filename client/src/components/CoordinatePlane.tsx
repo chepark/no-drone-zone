@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Nest } from "../assets/Nest";
 import { ViolatorData } from "../lib/types";
 import DroneMarker from "./DroneMarker";
@@ -30,7 +30,7 @@ const CoordinatePlane = ({ violators }: { violators: ViolatorData[] }) => {
       ref={parentElement}
       style={{ width: "100%", height: "100%", overflow: "hidden" }}
     >
-      <div className="">
+      <div>
         <svg width="500" height="500" transform={`scale(${scale})`}>
           {/* draw the X and Y axis */}
           <line x1="0" y1="250" x2="500" y2="250" stroke="#000" />
@@ -88,14 +88,13 @@ const CoordinatePlane = ({ violators }: { violators: ViolatorData[] }) => {
 
           {/* mark the points on drones */}
           {violators.map((violator, index) => {
-            const { positionX, positionY } = violator;
+            const { pilotId, name, positionX, positionY } = violator;
             const colorCode = colorData[index].hex;
 
             return (
               <DroneMarker
-                name={violator.name}
-                positionX={positionX}
-                positionY={positionY}
+                key={pilotId}
+                violator={violator}
                 colorCode={colorCode}
               />
             );

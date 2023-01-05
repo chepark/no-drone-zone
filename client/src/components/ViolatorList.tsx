@@ -2,12 +2,17 @@ import React from "react";
 import { ViolatorData } from "../lib/types";
 import ViolatorItem from "./ViolatorItem";
 import colorData from "../data/colors.json";
+import useWindowSize from "../hooks/useWindowSize";
 
 const ViolatorList = ({ violators }: { violators: ViolatorData[] }) => {
+  const { innerHeight } = useWindowSize();
+
   return (
-    <div className="flex flex-col w-auto">
-      {/* <h2 className="mb-5 text-xl">Pilot Information</h2> */}
-      <ul className="flex flex-col gap-y-4 min-w-fit overflow-y-scroll h-screen">
+    <div
+      className="flex flex-col w-auto"
+      style={{ height: `${innerHeight - 200}px` }}
+    >
+      <ul className="flex flex-col flex-1 gap-y-4 overflow-y-scroll">
         {violators.map((violator: ViolatorData, index: number) => {
           const colorCode = colorData[index].hex;
 
