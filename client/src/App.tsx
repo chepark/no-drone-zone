@@ -20,7 +20,7 @@ function App() {
 
   console.log(violators.length);
   return (
-    <div className="App">
+    <div className="App border-2 border-indigo-500">
       <div className="flex flex-col justify-between items-bottom">
         <h1 className="text-left text-2xl font-bold">BirdNest</h1>
         <h2 className="text-left">
