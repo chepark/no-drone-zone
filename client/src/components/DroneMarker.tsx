@@ -29,11 +29,12 @@ const DroneMarker = ({
           cy={positionY}
           r="5"
           fill={colorCode}
+          data-testid="drone-marker"
         />
       </svg>
 
       {showTooltip && (
-        <>
+        <svg>
           <text
             x={`450`}
             y={`450`}
@@ -41,6 +42,7 @@ const DroneMarker = ({
             fontSize="14"
             textAnchor="end"
             dominantBaseline="auto"
+            data-testid="name-text"
           >
             {name}
           </text>
@@ -51,10 +53,11 @@ const DroneMarker = ({
             fontSize="14"
             textAnchor="end"
             dominantBaseline="auto"
+            data-testid="distance-text"
           >
             {closestDistance} m
           </text>
-        </>
+        </svg>
       )}
     </>
   );

@@ -19,6 +19,7 @@ const ViolatorItem = ({
       <div
         className="rounded-full w-4 h-4 mb-2 absolute top-5 right-5"
         style={{ backgroundColor: `${colorCode}` }}
+        data-testid="pilot-color"
       ></div>
       <div>▪️ Name: {name}</div>
       <div>▪️ Pilot ID: {pilotId}</div>

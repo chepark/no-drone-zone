@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import "./App.css";
 import CoordinatePlane from "./components/CoordinatePlane.js";
 import ViolatorList from "./components/ViolatorList.js";
@@ -15,16 +14,21 @@ function App() {
     events.onopen = () => {
       setLoading(false);
     };
+
     events.onmessage = (e) => {
       const parsedData: ViolatorData[] = JSON.parse(e.data);
       setViolators(parsedData);
+    };
+
+    return () => {
+      events.close();
     };
   }, []);
 
   return (
     <div className="App">
       <div className="flex flex-col justify-between items-bottom bg-indigo-700 pt-4 pl-4">
-        <h1 className="text-left text-2xl font-bold text-white">BirdNest:</h1>
+        <h1 className="text-left text-2xl font-bold text-white">BirdNest</h1>
         <div className="text-left text-lg mt-2 mb-5 text-white">
           Pilot and Drone Tracking System to Protect Endangered Birds, Great
           Crested Grebe
