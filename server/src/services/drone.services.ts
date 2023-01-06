@@ -17,9 +17,6 @@ const parser = new XMLParser({
 export const fetchDrones = async () => {
   try {
     const response = await axios.get(REAKTOR_DRONE_API);
-    if (!response.data) {
-      console.log("response data", response);
-    }
     return response;
   } catch (error) {
     console.log("Error when fetching drone data.");
@@ -64,25 +61,33 @@ export const extractDronesTimeStamp = async (parsedData: DroneReport) => {
 };
 
 /**
- *
+ * Tracks drones within the NDZ monitoring zone.
  */
+
 export const realtimeDroneTracker = async () => {
   const { timeStamp, drones } = await handleDroneData();
 
+  /**
+   * Maps through the information of all drones in the monitoring zone.
+   */
   drones.map((d) => {
     let { serialNumber, positionX, positionY } = d;
 
+    /**
+     * Devided by 1000 to match the coordinate values into the values of the meter unit.
+     * */
     positionX = positionX / 1000;
     positionY = positionY / 1000;
 
     const drone = new Drone(serialNumber, positionX, positionY);
     const coordinates = { positionX, positionY };
 
+    /**
+     * If a drone violates NDZ, pilot data is fetched and handled to save or update in DB.
+     */
     if (drone.violatedNDZ) {
       console.log("VIOLATOR!", serialNumber, drone.distance);
       handlePilot(serialNumber, drone.distance, coordinates, timeStamp);
-    } else {
-      console.log("GOOD!", serialNumber, drone.distance);
     }
   });
 };

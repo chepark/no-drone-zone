@@ -4,6 +4,15 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _PilotRecordHandler_instances, _PilotRecordHandler_checkDistanceRecord;
+/**
+ * Handles the pilot data fetched from {@link https://assignments.reaktor.com/birdnest/pilots/:serialNumber}
+ *
+ * The module achieves the two main purpose.
+ * 1. Check which one is closer to the bird's nest: the distance data in DB or the current distance data fetched from Reaktor API?
+ * 2. If the current distance is closer, set True for
+ *
+ * @module PilotRecordHandler
+ */
 class PilotRecordHandler {
     constructor(pilotData, distance, time, record) {
         _PilotRecordHandler_instances.add(this);

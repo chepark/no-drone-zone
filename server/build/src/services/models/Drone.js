@@ -5,6 +5,17 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 };
 var _Drone_instances, _Drone_calculateDistance, _Drone_checkViolation;
 import { NEST_COORDINATES, NO_DRONE_ZONE_MIN_RADIUS, } from "../../lib/constants.js";
+/**
+ * Handles the original data fetched
+ * from Reaktor API {@link https://assignments.reaktor.com/birdnest/drones}
+ * before saving into the DB.
+ *
+ * The module achieves the two main purposes.
+ * 1. Calculate the distance between the drone and the bird's nest using positionX and positionY values.
+ * 2. Check if the drone breaks into NDZ.
+ *
+ * @module Drone
+ */
 class Drone {
     constructor(serialNumber, xCoordinate, yCoordinate) {
         _Drone_instances.add(this);
@@ -16,7 +27,6 @@ class Drone {
     }
 }
 _Drone_instances = new WeakSet(), _Drone_calculateDistance = function _Drone_calculateDistance(xPosition, yPosition) {
-    // 2D Distance Formula: Distance = sqrt((x2 – x1)^2 + (y2 – y1)^2)
     // Divided by 1000 to turn coordinate unit into meters
     const xDistancePower = Math.pow(xPosition - NEST_COORDINATES.X / 1000, 2);
     const yDistancePower = Math.pow(yPosition - NEST_COORDINATES.Y / 1000, 2);

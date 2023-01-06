@@ -15,8 +15,8 @@ import { PilotStorage } from "../services/PilotStorage.services.js";
  * It streams data to the client every 2 seconds (=2000 milliseconds).
  *
  *
- * @param {express.Request} req
- * @param {express.Response} res
+ * @param {express.Request} req - Request object sent from the client.
+ * @param {express.Response} res - Response object to send to the client.
  */
 export const violatorController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const headers = {
