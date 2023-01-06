@@ -4,6 +4,11 @@ import ViolatorItem from "./ViolatorItem";
 import colorData from "../data/colors.json";
 import useWindowSize from "../hooks/useWindowSize";
 
+/**
+ * Renders all pilots information.
+ * @param
+ * @returns
+ */
 const ViolatorList = ({ violators }: { violators: ViolatorData[] }) => {
   const { innerHeight } = useWindowSize();
 

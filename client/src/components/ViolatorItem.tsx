@@ -3,6 +3,13 @@ import { formatDate } from "../lib/dateFormatter";
 import { distanceFormatter } from "../lib/distanceFormatter";
 import { ViolatorData } from "../lib/types";
 
+/**
+ * Renders a list containing the pilot's information.
+ * It is called in ViolatorList component.
+ *
+ * @param param
+ * @returns
+ */
 const ViolatorItem = ({
   violator,
   colorCode,

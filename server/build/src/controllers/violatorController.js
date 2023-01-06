@@ -8,9 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { PilotStorage } from "../services/PilotStorage.services.js";
+/**
+ * Process the route request coming to the path "/api/violators/realtime".
+ *
+ * The controller uses Server-Sent Events (SSE).
+ * It streams data to the client every 2 seconds (=2000 milliseconds).
+ *
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
 export const violatorController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // testing
-    //curl -H Accept:text/event-stream http://localhost:8000/api/violators/realtime
     const headers = {
         "Content-Type": "text/event-stream",
         Connection: "keep-alive",
@@ -23,4 +31,6 @@ export const violatorController = (req, res) => __awaiter(void 0, void 0, void 0
         res.write(data);
     }), 2000);
 });
+// Check SSE is working through the terminal.
+// curl -H Accept:text/event-stream http://localhost:8000/api/violators/realtime
 //# sourceMappingURL=violatorController.js.map

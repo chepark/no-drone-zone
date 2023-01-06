@@ -9,6 +9,10 @@ function App() {
   const [violators, setViolators] = useState<[] | ViolatorData[]>([]);
   const [loading, setLoading] = useState(true);
 
+  /**
+   * Open a connectioni to the server
+   * to begin receiving streaming data.
+   */
   useEffect(() => {
     const events = new EventSource(SERVER_SENT_EVENT_URL);
     events.onopen = () => {

@@ -1,5 +1,9 @@
 export type DateISOString = string;
 
+/**
+ * Pilot data fetched from Reaktor API
+ */
+
 export interface PilotData {
   pilotId: string;
   firstName: string;
@@ -8,6 +12,10 @@ export interface PilotData {
   createdDt: DateISOString;
   email: string;
 }
+
+/**
+ * Drone data resides in the DroneReport below.
+ */
 
 export interface DroneData {
   serialNumber: string;
@@ -21,6 +29,11 @@ export interface DroneData {
   positionX: number;
   altitude: number;
 }
+
+/**
+ * JSON parsed from the drone report written in XML.
+ * The drone report is fetched from the Reaktor Drone API.
+ */
 
 export interface DroneReport {
   "?xml": {

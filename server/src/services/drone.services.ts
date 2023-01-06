@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { XMLParser } from "fast-xml-parser";
 import { REAKTOR_DRONE_API } from "../lib/constants.js";
-import { DroneReport } from "../lib/types.js";
+import { DroneData, DroneReport } from "../lib/types.js";
 import Drone from "./models/Drone.js";
 import { handlePilot } from "./pilot.services.js";
 
@@ -10,6 +10,10 @@ const parser = new XMLParser({
   attributeNamePrefix: "@_",
 });
 
+/**
+ * Fetches drone data from {@link https://assignments.reaktor.com/birdnest/drones}
+ * @returns - Response from the API.
+ */
 export const fetchDrones = async () => {
   try {
     const response = await axios.get(REAKTOR_DRONE_API);
@@ -22,15 +26,33 @@ export const fetchDrones = async () => {
   }
 };
 
-export const handleDroneData = async () => {
-  // parse XML string to JSON
+/**
+ * Handles the original data in order to work smoothly in the server side.
+ * The function does the three tasks.
+ * 1. Fetchs the drone data.
+ * 2. Parses XML data fetched from 1 to JSON.
+ * 3. Extracts drones and timestamp data and combine as an object.
+ *
+ * @returns
+ */
+const handleDroneData = async () => {
   const { data }: { data: string } = await fetchDrones();
   const parsedData: DroneReport = parser.parse(data);
 
-  const drones_timeStamp = await extractDronesTimeStamp(parsedData);
+  const drones_timeStamp: { timeStamp: string; drones: DroneData[] } =
+    await extractDronesTimeStamp(parsedData);
+
   return drones_timeStamp;
 };
 
+/**
+ * The function does the following jobs.
+ * 1. Extracts snapshotTimeStamp and drones from the JSON.
+ * 2. Returns the two data as an object.
+ *
+ * @param parsedData - JSON parsed from the XML fetched from Reaktor API.
+ * @returns - timeStampe: date string, drones: an Array of objects.
+ */
 export const extractDronesTimeStamp = async (parsedData: DroneReport) => {
   const {
     report: {
@@ -41,6 +63,9 @@ export const extractDronesTimeStamp = async (parsedData: DroneReport) => {
   return { timeStamp, drones };
 };
 
+/**
+ *
+ */
 export const realtimeDroneTracker = async () => {
   const { timeStamp, drones } = await handleDroneData();
 

@@ -3,6 +3,10 @@ dotenv.config();
 import { DataSource } from "typeorm";
 import { Pilot } from "../db/entity/Pilot.js";
 
+/**
+ * TypeORM configuration to connect to DB.
+ */
+
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: process.env.DB_HOST,

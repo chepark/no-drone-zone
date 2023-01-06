@@ -5,11 +5,11 @@ import DroneMarker from "./DroneMarker";
 import colorData from "../data/colors.json";
 
 /**
- * Component that renders a plane to mark locations of drones
- * that invaded the No Drone Zone.
+ * Renders the monitoring zone as a form of a XY plane.
+ * Marks locations of drones that invaded the No Drone Zone.
  *
- * @param param0
- * @returns
+ * @param violators - all violators data
+ * @returns - svg elements that demostrates an xy pland and drone location markers.
  */
 
 const CoordinatePlane = ({ violators }: { violators: ViolatorData[] }) => {

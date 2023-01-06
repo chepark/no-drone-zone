@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { distanceFormatter } from "../lib/distanceFormatter";
 import { ViolatorData } from "../lib/types";
 
+/**
+ * Marks the location of a drone.
+ * It is called in CoordinatePlane component.
+ *
+ * @param - colorCode is a hex code.
+ * @returns
+ */
 const DroneMarker = ({
   violator,
   colorCode,
@@ -20,6 +27,7 @@ const DroneMarker = ({
 
   return (
     <>
+      {/* Draw drone marker */}
       <svg>
         <circle
           className="cursor-pointer"
@@ -33,6 +41,7 @@ const DroneMarker = ({
         />
       </svg>
 
+      {/* Show pilot name and the distance */}
       {showTooltip && (
         <svg>
           <text
