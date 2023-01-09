@@ -3,7 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import violatorsRouter from "./src/routes/violators.route.js";
 import { realtimeDroneTracker } from "./src/services/drone.services.js";
-import { PilotStorage } from "./src/services/PilotStorage.services.js";
+import { PilotStorage } from "./src/services/pilotStorage.services.js";
 import { AppDataSource } from "./src/config/data-source.js";
 
 const port = 8000;

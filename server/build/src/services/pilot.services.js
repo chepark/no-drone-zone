@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import axios from "axios";
 import { REAKTOR_PILOT_API } from "../lib/constants.js";
 import PilotRecordHandler from "./models/PilotRecordHandler.js";
-import { PilotStorage } from "./PilotStorage.services.js";
+import { PilotStorage } from "./pilotStorage.services.js";
 /**
  * Fetches a pilot data from Reaktor API
  * @param serialNumber - Drone's serial number.

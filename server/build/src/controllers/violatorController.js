@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { PilotStorage } from "../services/PilotStorage.services.js";
+import { PilotStorage } from "../services/pilotStorage.services.js";
 /**
  * Process the route request coming to the path "/api/violators/realtime".
  *
