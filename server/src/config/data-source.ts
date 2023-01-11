@@ -1,5 +1,10 @@
 import * as dotenv from "dotenv";
-dotenv.config();
+import path from "path";
+
+dotenv.config({
+  path: path.join(path.dirname("../../"), ".env"),
+});
+
 import { DataSource } from "typeorm";
 import { Pilot } from "../db/entity/Pilot.js";
 
