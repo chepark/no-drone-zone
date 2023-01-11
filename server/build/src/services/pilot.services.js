@@ -43,12 +43,19 @@ export const handlePilot = (serialNumber, distance, coordinates, time) => __awai
     }
     if (record) {
         const pilotRecordHandler = new PilotRecordHandler(data, distance, time, record.distance);
-        if (pilotRecordHandler.updateRecord) {
-            PilotStorage.updateDistanceLastSeenTime(pilotId, pilotRecordHandler.closestDistance, coordinates, time);
-        }
-        else {
-            PilotStorage.updateLastSeenTime(pilotId, time);
-        }
+        // if (pilotRecordHandler.updateRecord) {
+        //   PilotStorage.updateDistanceLastSeenTime(
+        //     pilotId,
+        //     pilotRecordHandler.closestDistance,
+        //     coordinates,
+        //     time
+        //   );
+        // } else {
+        //   PilotStorage.updateLastSeenTime(pilotId, time);
+        // }
+        pilotRecordHandler.updateRecord
+            ? PilotStorage.updateDistanceLastSeenTime(pilotId, pilotRecordHandler.closestDistance, coordinates, time)
+            : PilotStorage.updateLastSeenTime(pilotId, time);
     }
 });
 //# sourceMappingURL=pilot.services.js.map

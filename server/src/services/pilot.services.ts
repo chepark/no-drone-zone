@@ -54,15 +54,24 @@ export const handlePilot = async (
       record.distance
     );
 
-    if (pilotRecordHandler.updateRecord) {
-      PilotStorage.updateDistanceLastSeenTime(
-        pilotId,
-        pilotRecordHandler.closestDistance,
-        coordinates,
-        time
-      );
-    } else {
-      PilotStorage.updateLastSeenTime(pilotId, time);
-    }
+    // if (pilotRecordHandler.updateRecord) {
+    //   PilotStorage.updateDistanceLastSeenTime(
+    //     pilotId,
+    //     pilotRecordHandler.closestDistance,
+    //     coordinates,
+    //     time
+    //   );
+    // } else {
+    //   PilotStorage.updateLastSeenTime(pilotId, time);
+    // }
+
+    pilotRecordHandler.updateRecord
+      ? PilotStorage.updateDistanceLastSeenTime(
+          pilotId,
+          pilotRecordHandler.closestDistance,
+          coordinates,
+          time
+        )
+      : PilotStorage.updateLastSeenTime(pilotId, time);
   }
 };

@@ -1,16 +1,16 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import violatorsRouter from "./src/routes/violators.route.js";
 import { realtimeDroneTracker } from "./src/services/drone.services.js";
 import { PilotStorage } from "./src/services/PilotStorage.services.js";
 import { AppDataSource } from "./src/config/data-source.js";
+import { dataStreamer } from "./src/controllers/dataStreamerController.js";
 const port = 8000;
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/api/violators", violatorsRouter);
+app.get("/", dataStreamer);
 app.listen(port, () => {
     console.log("listening on the port ", port);
 });
