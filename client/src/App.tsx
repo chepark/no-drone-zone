@@ -14,7 +14,8 @@ function App() {
    * to begin receiving streaming data.
    */
   useEffect(() => {
-    const events = new EventSource(SERVER_SENT_EVENT_URL);
+    const host = window.location.host;
+    const events = new EventSource(`http://${host}/api/violators`);
     events.onopen = () => {
       setLoading(false);
     };
