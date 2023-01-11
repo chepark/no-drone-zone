@@ -2,6 +2,8 @@
 
 The app is built to detect the protecting zone of the endangered birds Monadikuikka from drones. When a drone infringes the no drone zone, the app displays the drone location and the pilot information.
 
+**Check out the demo:** [http://3.84.254.90/](http://3.84.254.90/)
+
 <p align="center">
   <img width="800px" height="auto" src="./public/assets/ndz.png">
 </p>
@@ -76,7 +78,7 @@ This section explains the development process, reasons for using certain technol
 
 ### 5.2 Why Server Sent Event over WebSocket?
 
-<p align="left">
+<p align="center">
   <img width="800px" height="auto" src="./public/assets/com.png">
 </p>
 Both methods have common in terms of **persist a connection** between the client and server. The difference is in the communication direction.
@@ -102,6 +104,7 @@ After many hours of research, I learned about the configuration for reverse prox
 - Add testing in the server side.
 - Modify security group inbound rules for better security.
 - When undefined data is fetched from Reaktor API, make the server work continuously without shutdown.
+- Deploy the SSL certificate and switch http to https.
 
 ## 8. Run locally
 
