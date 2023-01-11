@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { realtimeDroneTracker } from "./src/services/drone.services.js";
-import { PilotStorage } from "./src/services/PilotStorage.services.js";
+import { PilotStorage } from "./src/services/pilotStorage.services.js";
 import { AppDataSource } from "./src/config/data-source.js";
 
 import { dataStreamer } from "./src/controllers/dataStreamerController.js";

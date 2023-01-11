@@ -2,7 +2,7 @@ import axios from "axios";
 import { REAKTOR_PILOT_API } from "../lib/constants.js";
 import { PilotData } from "../lib/types.js";
 import PilotRecordHandler from "./models/PilotRecordHandler.js";
-import { PilotStorage } from "./PilotStorage.services.js";
+import { PilotStorage } from "./pilotStorage.services.js";
 
 /**
  * Fetches a pilot data from Reaktor API
@@ -53,17 +53,6 @@ export const handlePilot = async (
       time,
       record.distance
     );
-
-    // if (pilotRecordHandler.updateRecord) {
-    //   PilotStorage.updateDistanceLastSeenTime(
-    //     pilotId,
-    //     pilotRecordHandler.closestDistance,
-    //     coordinates,
-    //     time
-    //   );
-    // } else {
-    //   PilotStorage.updateLastSeenTime(pilotId, time);
-    // }
 
     pilotRecordHandler.updateRecord
       ? PilotStorage.updateDistanceLastSeenTime(
