@@ -2,6 +2,10 @@
 
 The app is built to detect the protecting zone of the endangered birds Monadikuikka from drones. When a drone infringes the no drone zone, the app displays the drone location and the pilot information.
 
+<p align="center">
+  <img width="800px" height="auto" src="./public/assets/ndz.png">
+</p>
+
 ## 1. Functional Requirement
 
 - [x] Hold the pilot information for 10 minutes since their drones violated the NDZ.
@@ -72,20 +76,62 @@ This section explains the development process, reasons for using certain technol
 
 ### 5.2 Why Server Sent Event over WebSocket?
 
+<p align="left">
+  <img width="800px" height="auto" src="./public/assets/com.png">
+</p>
+Both methods have common in terms of **persist a connection** between the client and server. The difference is in the communication direction.
+
+**Server-Sent Events (SSE)** is a **one way connection** to stream events to the frontend.([Mozila](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)). **Stock price tracing apps** are typical examples where SSE can be used. Whereas **WebSocket** is **bi-directional** communication protocol. **Chat apps** are examples where WebSockets can be implmented.
+
+In this app, a user does not need to send any requests to the backend after loading the page. The client only gets automatic updates regarding violators from the server through HTTP connection. This is the reason that SSE was chosen for the project.
+
 ## 6. Challenges
 
 ### 6.1 AWS-EC2
 
-### 6.2 NginX
+Having basic knowledge in Linux commands was helpful but it was not enough to set up a virtual server in the AWS cloud. For example, it was challenging to set up **the security group for an instance**. In the future, I want to improve my understanding in network and change the current configuration.
 
-When I first deloy the app,
+### 6.2 Nginx
+
+I got to know about Nginx and **reverse proxy** through this project. In my first trial of deployment, the frontend showed the UI and the server worked properly with the database. However, the data were not streamed to the frontend.
+
+After many hours of research, I learned about the configuration for reverse proxy was missing in my first deployment trial. After setting up the reverse proxy configuration in Nginx, the data were streamed successfully.
 
 ## 7. Imrovement
 
-## 2. Run locally
+- Add testing in the server side.
+- Modify security group inbound rules for better security.
+- When undefined data is fetched from Reaktor API, make the server work continuously without shutdown.
 
-Steps to run this project:
+## 8. Run locally
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+### 8.1 Backend
+
+1. In the terminal `git clone https://github.com/chepark/no-drone-zone.git`
+2. In the `no-drone-zone` directory,
+
+```
+$cd server
+$npm install
+```
+
+3. Run the server
+
+```
+$npm run serve
+```
+
+### 8.2 Frontend
+
+1. In the `no-drone-zone` directory,
+
+```
+$cd client
+$npm install
+$npm run dev
+```
+
+2. Open the link showing in the terminal.
+<p align="left">
+  <img width="300px" height="auto" src="./public/assets/frontend-link.png">
+</p>
