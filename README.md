@@ -99,7 +99,7 @@ I got to know about Nginx and **reverse proxy** through this project. In my firs
 
 After many hours of research, I learned about the configuration for reverse proxy was missing in my first deployment trial. After setting up the reverse proxy configuration in Nginx, the data were streamed successfully.
 
-## 6. Imrovement
+## 6. Improvement
 
 - Add testing in the server side.
 - Modify security group inbound rules for better security.
@@ -110,7 +110,7 @@ After many hours of research, I learned about the configuration for reverse prox
 
 ### Prerequisite
 
-- Need a AWS-RDS database.
+- Need a AWS-RDS MySQL database.
 - Need to create `.env` on the root of the server (no-drone-zone > server > .env) with following variables.
 - 1. DB_HOST
 - 2. DB_PORT
