@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import CoordinatePlane from "./components/CoordinatePlane.js";
 import ViolatorList from "./components/ViolatorList.js";
-import { SERVER_SENT_EVENT_URL } from "./constants/constants";
+// import { SERVER_SENT_EVENT_URL } from "./constants/constants";
 import { ViolatorData } from "./lib/types";
 
 function App() {
