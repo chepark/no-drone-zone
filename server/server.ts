@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
+import path from "path";
 import { realtimeDroneTracker } from "./src/services/drone.services.js";
 import { PilotStorage } from "./src/services/pilotStorage.services.js";
 import { AppDataSource } from "./src/config/data-source.js";
@@ -12,10 +12,15 @@ const port = 8000;
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", dataStreamer);
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/client", "/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client", "/build", "index.html"));
+});
 
 app.listen(port, () => {
   console.log("listening on the port ", port);

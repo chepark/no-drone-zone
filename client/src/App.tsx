@@ -24,6 +24,12 @@ function App() {
       setViolators(parsedData);
     };
 
+    // set error handler for loading section.
+    events.onerror = (e) => {
+      console.log("Error in Event Source: ", e);
+      events.close();
+    };
+
     return () => {
       events.close();
     };
