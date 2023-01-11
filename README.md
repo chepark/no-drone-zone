@@ -87,28 +87,38 @@ Both methods have common in terms of **persist a connection** between the client
 
 In this app, a user does not need to send any requests to the backend after loading the page. The client only gets automatic updates regarding violators from the server through HTTP connection. This is the reason that SSE was chosen for the project.
 
-## 6. Challenges
+### 5.3. Challenges
 
-### 6.1 AWS-EC2
+#### 5.3.1 AWS-EC2
 
 Having basic knowledge in Linux commands was helpful but it was not enough to set up a virtual server in the AWS cloud. For example, it was challenging to set up **the security group for an instance**. In the future, I want to improve my understanding in network and change the current configuration.
 
-### 6.2 Nginx
+#### 5.3.2 Nginx
 
 I got to know about Nginx and **reverse proxy** through this project. In my first trial of deployment, the frontend showed the UI and the server worked properly with the database. However, the data were not streamed to the frontend.
 
 After many hours of research, I learned about the configuration for reverse proxy was missing in my first deployment trial. After setting up the reverse proxy configuration in Nginx, the data were streamed successfully.
 
-## 7. Imrovement
+## 6. Imrovement
 
 - Add testing in the server side.
 - Modify security group inbound rules for better security.
 - When undefined data is fetched from Reaktor API, make the server work continuously without shutdown.
 - Deploy the SSL certificate and switch http to https.
 
-## 8. Run locally
+## 7. Run locally
 
-### 8.1 Backend
+### Prerequisite
+
+- Need a AWS-RDS database.
+- Need to create `.env` on the root of the server (no-drone-zone > server > .env) with following variables.
+- 1. DB_HOST
+- 2. DB_PORT
+- 3. DB_USER
+- 4. DB_PASSWORD
+- 5. DB_DATABASE
+
+### 7.1 Backend
 
 1. In the terminal `git clone https://github.com/chepark/no-drone-zone.git`
 2. In the `no-drone-zone` directory,
@@ -124,7 +134,7 @@ $npm install
 $npm run serve
 ```
 
-### 8.2 Frontend
+### 7.2 Frontend
 
 1. In the `no-drone-zone` directory,
 
