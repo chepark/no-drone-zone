@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import CoordinatePlane from "./components/CoordinatePlane.js";
 import ViolatorList from "./components/ViolatorList.js";
-import { SERVER_SENT_EVENT_URL } from "./constants/constants";
 import { ViolatorData } from "./lib/types";
 
 function App() {
@@ -14,7 +13,8 @@ function App() {
    * to begin receiving streaming data.
    */
   useEffect(() => {
-    const events = new EventSource(SERVER_SENT_EVENT_URL);
+    const host = window.location.host;
+    const events = new EventSource(`http://${host}/api/violators`);
     events.onopen = () => {
       setLoading(false);
     };
