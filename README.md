@@ -17,13 +17,36 @@ The app is built to detect the protecting zone of the endangered birds Monadikui
 - [x] Present up-to-date information without refreshing the view.
 - [x] Visualize the drone position.
 
-## 2. Architecture
+## 2. Implementation
+
+### 2.1 Development Process
+
+1. Define objectives of the application.
+2. Research and plan tech stacks.
+3. Structure the app architecture.
+4. Build up the backend and connect to the database.
+5. Implement the frontend and test the React components.
+6. Deploy the app using AWS-EC2.
+7. Configure Nginx as a reverse proxy.
+
+### 2.2 Streaming Data: Why Server-Sent Event(SSE) over WebSocket?
+
+<p align="center">
+  <img width="800px" height="auto" src="./public/assets/com.png">
+</p>
+Both methods have common in terms of **persist a connection** between the client and server. The difference is in the communication direction.
+
+**SSE** is a **one way connection** to stream events to the frontend.([Mozila](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)). **Stock price tracing apps** are typical examples where SSE can be used. Whereas **WebSocket** is **bi-directional** communication protocol. **Chat apps** are examples where WebSockets can be implmented.
+
+In this app, a user does not need to send any requests to the backend after loading the page. The client only gets automatic updates regarding violators from the server through HTTP connection. This is the reason that SSE was chosen for the project.
+
+## 3. Architecture
 
 <p align="center">
   <img width="800px" height="auto" src="./public/assets/ndz-architecture.png">
 </p>
 
-## 3. Tech stacks
+## 4. Tech stacks
 
 | Category       | Technology                                                          |
 | -------------- | ------------------------------------------------------------------- |
@@ -32,9 +55,9 @@ The app is built to detect the protecting zone of the endangered birds Monadikui
 | Database       | AWS-RDS, MySQL                                                      |
 | Cloud Platform | AWS-EC2                                                             |
 
-## 4. Overview
+## 5. Overview
 
-### 4.1 Backend
+### 5.1 Backend
 
 - `config > data-source.ts`: configuration for MySQL Database.
 - `controllers > dataStreamerController.ts`: logics to stream violators data
@@ -49,7 +72,7 @@ The app is built to detect the protecting zone of the endangered birds Monadikui
 - `services > pilotStorage.services.ts`: Logics for CRUD operations on the database.
 - `server.ts`: The main file for the backend.
 
-### 4.2 Frontend
+### 5.2 Frontend
 
 - `components > CoordinatePlane.tsx`: XY plane UI.
 - `components > DroneMarker.tsx`: Drone location marker UI.
@@ -62,51 +85,26 @@ The app is built to detect the protecting zone of the endangered birds Monadikui
 - `lib > types.ts`: Types that widely used in the client side.
 - `test`: testing codes for the client side.
 
-## 5. Implementation
+### 6. Challenges
 
-This section explains the development process, reasons for using certain technology, and challengies along the way of the implementation.
-
-### 5.1 Process
-
-1. Define objectives of the application.
-2. Research and plan tech stacks.
-3. Structure the app architecture.
-4. Build up the backend and connect to the database.
-5. Implement the frontend and test the React components.
-6. Deploy the app using AWS-EC2.
-7. Configure Nginx as a reverse proxy.
-
-### 5.2 Why Server Sent Event over WebSocket?
-
-<p align="center">
-  <img width="800px" height="auto" src="./public/assets/com.png">
-</p>
-Both methods have common in terms of **persist a connection** between the client and server. The difference is in the communication direction.
-
-**Server-Sent Events (SSE)** is a **one way connection** to stream events to the frontend.([Mozila](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)). **Stock price tracing apps** are typical examples where SSE can be used. Whereas **WebSocket** is **bi-directional** communication protocol. **Chat apps** are examples where WebSockets can be implmented.
-
-In this app, a user does not need to send any requests to the backend after loading the page. The client only gets automatic updates regarding violators from the server through HTTP connection. This is the reason that SSE was chosen for the project.
-
-### 5.3. Challenges
-
-#### 5.3.1 AWS-EC2
+#### 6.1 AWS-EC2
 
 Having basic knowledge in Linux commands was helpful but it was not enough to set up a virtual server in the AWS cloud. For example, it was challenging to set up **the security group for an instance**. In the future, I want to improve my understanding in network and change the current configuration.
 
-#### 5.3.2 Nginx
+#### 6.2 Nginx
 
 I got to know about Nginx and **reverse proxy** through this project. In my first trial of deployment, the frontend showed the UI and the server worked properly with the database. However, the data were not streamed to the frontend.
 
 After many hours of research, I learned about the configuration for reverse proxy was missing in my first deployment trial. After setting up the reverse proxy configuration in Nginx, the data were streamed successfully.
 
-## 6. Improvement
+## 7. Improvement
 
 - Add testing in the server side.
 - Modify security group inbound rules for better security.
 - When undefined data is fetched from Reaktor API, make the server work continuously without shutdown.
 - Deploy the SSL certificate and switch http to https.
 
-## 7. Run locally
+## 8. Run locally
 
 ### Prerequisite
 
@@ -118,7 +116,7 @@ After many hours of research, I learned about the configuration for reverse prox
 - 4. DB_PASSWORD
 - 5. DB_DATABASE
 
-### 7.1 Backend
+### 8.1 Backend
 
 1. In the terminal `git clone https://github.com/chepark/no-drone-zone.git`
 2. In the `no-drone-zone` directory,
@@ -134,7 +132,7 @@ $npm install
 $npm run serve
 ```
 
-### 7.2 Frontend
+### 8.2 Frontend
 
 1. In the `no-drone-zone` directory,
 
