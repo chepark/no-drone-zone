@@ -21,7 +21,7 @@ export const fetchPilotFromReaktor = async (serialNumber: string) => {
 
 /**
  * The function is called when a drone breaks into the NDZ.
- * It fetches the data of the drone pilot, then create or update pilot data in DB.
+ * It fetches data of the violator from Reaktor API, then creates or updates pilot data in DB.
  *
  * @param serialNumber - It is used to fetch pilot data from Reaktor API.
  * @param distance - The distance between the drone currently breaks in NDZ and the bird's nest.
@@ -42,10 +42,18 @@ export const handlePilot = async (
 
   const record = await PilotStorage.findPilotById(pilotId);
 
+  /**
+   * If the violator data is not in DB,
+   * create a new data in DB.
+   */
   if (!record) {
     await PilotStorage.createPilot(data, distance, coordinates, time);
   }
 
+  /**
+   * If the violator data is already in DB,
+   * update the existing violator data in DB.
+   */
   if (record) {
     const pilotRecordHandler = new PilotRecordHandler(
       data,

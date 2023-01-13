@@ -14,7 +14,7 @@ export interface PilotData {
 }
 
 /**
- * Drone data resides in the DroneReport below.
+ * Drone data type that resides in the DroneReport below.
  */
 
 export interface DroneData {
@@ -31,7 +31,7 @@ export interface DroneData {
 }
 
 /**
- * JSON parsed from the drone report written in XML.
+ * Type for the JSON parsed from the drone report written in XML.
  * The drone report is fetched from the Reaktor Drone API.
  */
 

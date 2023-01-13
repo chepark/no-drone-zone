@@ -45,13 +45,13 @@ class PilotRecordHandler {
    * @returns - The current distance or the distance saved in DB
    */
   #checkDistanceRecord(record: pilotDistanceRecord = false): number {
-    // record x
+    // When there is no record
     if (!record) {
       this.updateRecord = true;
       return this.distance;
     }
 
-    // record o
+    // when there is a record
     if (record) {
       if (this.distance < record) {
         this.updateRecord = true;

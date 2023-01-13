@@ -9,7 +9,7 @@ import { DataSource } from "typeorm";
 import { Pilot } from "../db/entity/Pilot.js";
 
 /**
- * TypeORM configuration to connect to DB.
+ * TypeORM configuration for MySQL DB.
  */
 
 export const AppDataSource = new DataSource({

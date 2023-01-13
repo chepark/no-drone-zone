@@ -1,3 +1,7 @@
+/**
+ * contant variables that are used in the server side.
+ */
+
 export const NEST_COORDINATES = {
   X: 250000,
   Y: 250000,

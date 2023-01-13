@@ -1,6 +1,9 @@
 import { vi } from "vitest";
 import { ViolatorData } from "../../lib/types";
 
+/**
+ * Mocked pilot data.
+ */
 export const pilotDataMock: ViolatorData[] = [
   {
     pilotId: "P-05HIvn1avF",
@@ -34,6 +37,9 @@ export const pilotDataMock: ViolatorData[] = [
   },
 ];
 
+/**
+ * EventSource instance mock
+ */
 export const EventSourceMock = vi.fn(() => ({
   onopen: vi.fn(),
   onmessage: vi.fn(() => {

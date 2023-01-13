@@ -1,7 +1,15 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { PilotStorage } from "../services/pilotStorage.services.js";
 
+/**
+ * Sever-Sent Event (SSE) to stream data to the client.
+ * @param req
+ * @param res
+ */
 export const dataStreamer = (req: Request, res: Response) => {
+  /**
+   * Set the response header
+   */
   const headers = {
     "Content-Type": "text/event-stream",
     "Access-Control-Allow-Origin": "*",
@@ -11,12 +19,18 @@ export const dataStreamer = (req: Request, res: Response) => {
 
   res.writeHead(200, headers);
 
+  /**
+   * Send the violator data every 2 seconds (2000 milliseconds)
+   */
   const intervalId = setInterval(async () => {
     const violators = await PilotStorage.getAllPilots();
     const data = `data:${JSON.stringify(violators)}\n\n`;
     res.write(data);
   }, 2000);
 
+  /**
+   * End SSE when the client connection is closed.
+   */
   res.on("close", () => {
     console.log("Client closed.");
     clearInterval(intervalId);
