@@ -97,6 +97,14 @@ I got to know about Nginx and **reverse proxy** through this project. In my firs
 
 After many hours of research, I learned about the configuration for reverse proxy was missing in my first deployment trial. After setting up the reverse proxy configuration in Nginx, the data were streamed successfully.
 
+#### 6.3 Free tier limit of AWS services
+
+Today, I received an alert email from AWS because the app has used 85% from the free tier limit given to the AWS Data Transfer product.
+
+Before receiving this email, the server kept fetching data from Reaktor API and handling changes in DB every 2 seconds no matter a client opened the app or not.
+
+After receiving the email, I have modified code to do CRUD operations on the DB only when a client loads the page.
+
 ## 7. Improvement
 
 - Add testing in the server side.

@@ -6,7 +6,7 @@ import { PilotStorage } from "../services/pilotStorage.services.js";
  * @param req
  * @param res
  */
-export const dataStreamer = (req: Request, res: Response) => {
+export const dataStreamer = (req: Request, res: Response, DBIntervalId) => {
   /**
    * Set the response header
    */
@@ -34,6 +34,7 @@ export const dataStreamer = (req: Request, res: Response) => {
   res.on("close", () => {
     console.log("Client closed.");
     clearInterval(intervalId);
+    clearInterval(DBIntervalId);
     res.end();
   });
 };

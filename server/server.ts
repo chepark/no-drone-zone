@@ -13,7 +13,14 @@ const app = express();
 
 app.use(cors());
 
-app.get("/", dataStreamer);
+app.get("/", (req, res) => {
+  const DBintervalId = setInterval(() => {
+    PilotStorage.deleteOldData();
+    realtimeDroneTracker();
+  }, 2000);
+
+  dataStreamer(req, res, DBintervalId);
+});
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "/client", "/build")));
@@ -33,8 +40,3 @@ AppDataSource.initialize()
   .catch((err) => {
     console.log("db connection error", err);
   });
-
-setInterval(() => {
-  PilotStorage.deleteOldData();
-  realtimeDroneTracker();
-}, 2000);
