@@ -108,7 +108,7 @@ After receiving the email, I have modified code to do CRUD operations on the DB 
 ## 7. Improvement
 
 - Add testing in the server side.
-- Modify security group inbound rules for better security.
+- Modify AWS-EC2 security group inbound rules for better security.
 - When undefined data is fetched from Reaktor API, make the server work continuously without shutdown.
 - Deploy the SSL certificate and switch http to https.
 
