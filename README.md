@@ -107,6 +107,7 @@ After receiving the email, I have modified code to do CRUD operations on the DB 
 
 ## 7. Improvement
 
+- Change to use HTTP/2 instead of HTTP/1 for Server Sent Event (HTTP/1 limits maximum number of open connection.)
 - Add testing in the server side.
 - Modify security group inbound rules for better security.
 - When undefined data is fetched from Reaktor API, make the server work continuously without shutdown.
