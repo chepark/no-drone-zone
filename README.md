@@ -2,7 +2,7 @@
 
 The app is built to detect the protecting zone of the endangered birds Monadikuikka(Great Crested Grebe) from drones. When a drone infringes the no drone zone, the app displays the drone location and the pilot information.
 
-**Check out the demo:** [http://3.84.254.90/](http://3.84.254.90/)
+**Check out the demo:** [http://34.205.69.189/](http://34.205.69.189/)
 
 <p align="center">
   <img width="800px" height="auto" src="./public/assets/ndz.png">
