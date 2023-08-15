@@ -1,5 +1,7 @@
 # No Drone Zone
 
+** Since Reaktor no longer provides drone api: https://assignments.reaktor.com/birdnest/drones, the app cannot be on live anymore.
+
 The app is built to detect the protecting zone of the endangered birds Monadikuikka(Great Crested Grebe) from drones. When a drone infringes the no drone zone, the app displays the drone location and the pilot information.
 
 **Check out the demo:** [http://34.205.69.189/](http://34.205.69.189/)
